@@ -15,35 +15,15 @@ export const unstable_settings = {
 export default function RootLayout() {
 
   const colorScheme = useColorScheme();
-    const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
-
-      useEffect(() => {
-        async function checkLogin() {
-          const token = await SecureStore.getItemAsync("token");
-          setLoggedIn(!!token);
-        }
-        checkLogin();
-      }, []);
-
-
-    if (loggedIn === null) {
-      return <Text>Chargement...</Text>;
-    }
-
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack  screenOptions={{ headerShown: false }}>
-       {loggedIn ? (
-           <>
+
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        <Stack.Screen name="(auth)" />
 
-           </>
-        ) : (
-            <Stack.Screen name="(auth)" />
-
-            )}
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
