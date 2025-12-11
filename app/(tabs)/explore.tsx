@@ -9,6 +9,9 @@ import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Fonts } from '@/constants/theme';
 
+import * as SecureStore from "expo-secure-store";
+import { useRouter } from "expo-router";
+
 export default function TabTwoScreen() {
   return (
     <ParallaxScrollView

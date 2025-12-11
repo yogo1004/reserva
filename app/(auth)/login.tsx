@@ -5,9 +5,10 @@ import * as SecureStore from "expo-secure-store";
 export default function Login() {
   const router = useRouter();
 
-  const handleLogin = () => {
-    // plus tard : vérifier identifiants
-    await SecureStore.setItemAsync("token", "fakeToken");
+  const handleLogin = async () => {
+
+      await SecureStore.setItemAsync("token", "fakeToken");
+      // plus tard : vérifier identifiers
     router.replace("/(tabs)");
   };
 
