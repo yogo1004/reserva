@@ -83,3 +83,76 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+
+# =========================
+# Expo / React Native ignore
+# =========================
+
+# Dependencies
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+.expo/web/
+.expo/web/cache/
+dist/
+web-build/
+
+# Metro bundler cache
+metro-cache/
+.metro-health-check*
+
+# Native build outputs (keep ios/ and android/ folders)
+android/build/
+android/app/build/
+ios/build/
+*.keystore
+
+# Android Studio / Gradle
+.gradle/
+local.properties
+*.iml
+.idea/
+
+# iOS / Xcode
+*.xcworkspace
+*.xcuserstate
+*.xcuserdatad
+
+# Credentials
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# VS Code
+.vscode/
+
+# Ignore Expo Fast Refresh types
+expo-env.d.ts

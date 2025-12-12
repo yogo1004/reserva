@@ -1,13 +1,22 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform, StyleSheet, View, Text, Button } from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { Link, useRouter  } from 'expo-router';
+import * as SecureStore from "expo-secure-store";
+
 
 export default function HomeScreen() {
+
+  const router = useRouter();
+  const logout = async () => {
+    await SecureStore.deleteItemAsync("token");  // on supprime le token
+    router.replace("/(auth)/login");             // on renvoie vers l'écran de login
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -18,6 +27,7 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
+        <Button title="Se déconnecter" onPress={logout} />
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
       </ThemedView>
