@@ -1,13 +1,14 @@
 import { View, Text, Button } from "react-native";
 import { useRouter } from "expo-router";
-import * as SecureStore from "expo-secure-store";
+import {getToken, saveToken} from "@/lib/auth";
 
-export default function Login() {
+export default function Index() {
   const router = useRouter();
 
   const handleLogin = async () => {
 
-      await SecureStore.setItemAsync("token", "fakeToken");
+     saveToken("faketoken")
+      console.log(await getToken());
       // plus tard : vérifier identifiers
     router.replace("/(tabs)");
   };

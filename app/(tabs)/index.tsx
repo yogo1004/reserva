@@ -6,14 +6,15 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link, useRouter  } from 'expo-router';
-import * as SecureStore from "expo-secure-store";
+import { removeToken, getToken} from '@/lib/auth';
 
 
 export default function HomeScreen() {
 
   const router = useRouter();
   const logout = async () => {
-    await SecureStore.deleteItemAsync("token");  // on supprime le token
+    removeToken()  // on supprime le token
+    console.log(await getToken());
     router.replace("/(auth)/login");             // on renvoie vers l'écran de login
   };
 
@@ -27,9 +28,10 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <Button title="Se déconnecter" onPress={logout} />
+
         <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
+        <Button title="Se déconnecter" onPress={logout} />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>

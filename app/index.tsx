@@ -1,30 +1,29 @@
-// app/index.tsx
 import { Redirect } from 'expo-router';
 import { useEffect, useState } from 'react';
-import * as SecureStore from 'expo-secure-store';
-import { Text } from 'react-native';
+import { View, ActivityIndicator, Text } from 'react-native';
+import { getToken } from "@/lib/auth";
+
 
 export default function Index() {
     const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
 
     useEffect(() => {
         async function checkLogin() {
-            const token = await SecureStore.getItemAsync('token');
+            await new Promise(r => setTimeout(r, 2000));
+            const token = await getToken();
             setLoggedIn(!!token);
         }
         checkLogin();
     }, []);
+    console.log("token", loggedIn);
 
     if (loggedIn === null) {
         // Pendant qu'on lit le token : petit écran de chargement
-        return <Text>Chargement...</Text>;
+        return (
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                <ActivityIndicator />
+            </View>
+        );
     }
-
-    if (loggedIn) {
-        // Utilisateur connecté → envoie vers les tabs
-        return <Redirect href="/(tabs)" />;
-    }
-
-    // Pas connecté → envoie vers l'écran de login
-    return <Redirect href="/(auth)/login" />;
+    return loggedIn ? <Redirect href="/(tabs)" /> : <Redirect href="/(auth)/login" />;
 }
