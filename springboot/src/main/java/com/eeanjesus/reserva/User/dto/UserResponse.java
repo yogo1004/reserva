@@ -1,4 +1,4 @@
-package com.eeanjesus.reserva.User;
+package com.eeanjesus.reserva.user.dto;
 
 public record UserResponse(
         Long id,
@@ -6,3 +6,4 @@ public record UserResponse(
         String email,
         String role
 ) {}
+

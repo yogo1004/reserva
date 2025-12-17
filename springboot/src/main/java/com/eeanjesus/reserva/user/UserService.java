@@ -1,6 +1,6 @@
-package com.eeanjesus.reserva.User;
+package com.eeanjesus.reserva.user;
 
-import com.eeanjesus.reserva.User.UserResponse;
+import com.eeanjesus.reserva.user.dto.UserResponse;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,6 +21,12 @@ public class UserService {
     public UserResponse getByUsername(String username) {
         var u = repo.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found: " + username));
+        return toResponse(u);
+    }
+
+    public UserResponse getByUsernameAndPassword(String username, String password) {
+        var u = repo.findByUsernameAndPassword(username, password)
+                .orElseThrow(() -> new RuntimeException("Indvalid credentials"));
         return toResponse(u);
     }
 

@@ -1,6 +1,7 @@
-package com.eeanjesus.reserva.User;
+package com.eeanjesus.reserva.user;
 
-import com.eeanjesus.reserva.User.UserResponse;
+import com.eeanjesus.reserva.auth.dto.LoginResponse;
+import com.eeanjesus.reserva.user.dto.UserResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,11 +20,6 @@ public class UserController {
         return service.getById(id);
     }
 
-  // @GetMapping("/{username}")
-  // public UserResponse getByUsername(@PathVariable String username) {
-  //     return service.getByUsername(username);
-  // }
-
     // GET /api/users?username=admin
     @GetMapping
     public UserResponse getByUsername(@RequestParam(required = false) String username) {
@@ -31,5 +27,12 @@ public class UserController {
             throw new RuntimeException("Missing query param: username");
         }
         return service.getByUsername(username);
+    }
+    @GetMapping("/login")
+    public UserResponse getByUsernameAndPassword(@RequestParam(required = false) String username, @RequestParam(required = false) String password) {
+        if (username == null || username.isBlank() || password == null || password.isBlank()) {
+            throw new RuntimeException("Missing query param: username or password");
+        }
+        return service.getByUsernameAndPassword(username, password);
     }
 }

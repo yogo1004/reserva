@@ -1,4 +1,4 @@
-package com.eeanjesus.reserva.User;
+package com.eeanjesus.reserva.user;
 
 import jakarta.persistence.*;
 
