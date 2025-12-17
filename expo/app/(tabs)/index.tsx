@@ -14,7 +14,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const logout = async () => {
     removeToken()  // on supprime le token
-    console.log(await getToken());
+    console.log("token removed: " + await getToken());
     router.replace("/(auth)/login");             // on renvoie vers l'écran de login
   };
 

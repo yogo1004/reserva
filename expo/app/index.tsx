@@ -9,13 +9,14 @@ export default function Index() {
 
     useEffect(() => {
         async function checkLogin() {
-            await new Promise(r => setTimeout(r, 2000));
+            //await new Promise(r => setTimeout(r, 2000));
             const token = await getToken();
+            console.log("token index: " + await getToken());
             setLoggedIn(!!token);
         }
         checkLogin();
     }, []);
-    console.log("token", loggedIn);
+   // console.log("token index: ", loggedIn);
 
     if (loggedIn === null) {
         // Pendant qu'on lit le token : petit écran de chargement

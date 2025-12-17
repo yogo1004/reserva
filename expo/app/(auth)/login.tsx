@@ -8,7 +8,7 @@ export default function Index() {
   const handleLogin = async () => {
 
      saveToken("faketoken")
-      console.log(await getToken());
+      console.log("token saved: " + await getToken());
       // plus tard : vérifier identifiers
     router.replace("/(tabs)");
   };
