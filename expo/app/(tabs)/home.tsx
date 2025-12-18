@@ -1,22 +1,38 @@
 import { Image } from 'expo-image';
-import { Platform, StyleSheet, View, Text, Button } from 'react-native';
+import { Platform, StyleSheet, View, Text, ActivityIndicator , Button} from 'react-native';
 
 import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link, useRouter  } from 'expo-router';
-import { removeToken, getToken} from '@/lib/token';
+import { removeToken, getToken} from '@/lib/auth';
+import { apiFetch } from "@/lib/api";
+import { useEffect, useState } from "react";
 
+
+type Me = { id: number; username: string; role: string };
 
 export default function HomeScreen() {
 
   const router = useRouter();
   const logout = async () => {
-    removeToken("auth-token")  // on supprime le token
-    console.log(await getToken("auth-token"));
+    removeToken("auth")  // on supprime le token
+    console.log(await getToken("auth"));
     router.replace("/");             // on renvoie vers l'écran de login
   };
+
+  const [me, setMe] = useState<Me | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const data = await apiFetch("/api/me");
+      setMe(data);
+    })();
+  }, []);
+
+  if (!me) return <ActivityIndicator style={{ marginTop: 40 }} />;
+  console.log(me.username);
 
   return (
     <ParallaxScrollView
@@ -28,8 +44,9 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
+       <View><Text>{me.username}</Text></View>
+        <ThemedText type="title">Welcome </ThemedText>
 
-        <ThemedText type="title">Welcome!</ThemedText>
         <HelloWave />
         <Button title="Se déconnecter" onPress={logout} />
       </ThemedView>

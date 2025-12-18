@@ -1,6 +1,6 @@
 import { View, Text, Button } from "react-native";
 import { useRouter } from "expo-router";
-import {getToken, saveToken} from "@/lib/token";
+import {getToken, saveToken} from "@/lib/auth";
 
 export default function Index() {
   const router = useRouter();

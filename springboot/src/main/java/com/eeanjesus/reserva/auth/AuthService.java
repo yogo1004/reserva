@@ -6,13 +6,16 @@ import com.eeanjesus.reserva.user.UserEntity;
 import com.eeanjesus.reserva.user.UserRepository;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class AuthService {
 
     private final UserRepository userRepository;
+    private final TokenStore tokenStore;
 
-    public AuthService(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository, TokenStore tokenStore) {
         this.userRepository = userRepository;
+        this.tokenStore = tokenStore;
     }
 
     public LoginResponse login(LoginRequest request) {
@@ -27,9 +30,9 @@ public class AuthService {
         }
 
         // 3️⃣ Générer un token (TEMPORAIRE)
-        String fakeToken = "TOKEN_" + user.getId() + "_" + System.currentTimeMillis();
+        String token = tokenStore.issueToken(user.getId());
 
         // 4️⃣ Retourner la réponse
-        return new LoginResponse(fakeToken);
+        return new LoginResponse(token);
     }
 }

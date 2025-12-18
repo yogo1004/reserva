@@ -1,4 +1,4 @@
-import {getToken, saveToken} from "@/lib/token";
+import {getToken, saveToken} from "@/lib/auth";
 import { useState } from "react";
 import { View, Text, TextInput, Pressable, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
@@ -35,10 +35,10 @@ export default function LoginScreen() {
 
             // ✅ 2) On attend un JSON du type: { token: "..." }
             const data: { token: string } = await res.json();
-            console.log(data.token);
+            console.log("data",data.token);
 
             // ✅ 3) Stockage sécurisé
-            await saveToken("auth-token",data.token);
+            await saveToken("auth",data.token);
 
             // ✅ 4) Retour au guard (app/index.tsx)
             router.replace("/");
