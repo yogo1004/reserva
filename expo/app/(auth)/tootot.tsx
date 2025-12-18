@@ -1,16 +1,16 @@
 import { View, Text, Button } from "react-native";
 import { useRouter } from "expo-router";
-import {getToken, saveToken} from "@/lib/auth";
+import {getToken, saveToken} from "@/lib/token";
 
 export default function Index() {
   const router = useRouter();
 
   const handleLogin = async () => {
 
-     saveToken("faketoken")
-      console.log("token saved: " + await getToken());
+     //saveToken("faketoken")
+     // console.log("token saved: " + await getToken());
       // plus tard : vérifier identifiers
-    router.replace("/(tabs)");
+   // router.replace("/(tabs)");
   };
 
   return (

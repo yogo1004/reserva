@@ -1,7 +1,7 @@
 import { Redirect } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View, ActivityIndicator, Text } from 'react-native';
-import { getToken } from "@/lib/auth";
+import { getToken } from "@/lib/token";
 
 
 export default function Index() {
@@ -10,13 +10,12 @@ export default function Index() {
     useEffect(() => {
         async function checkLogin() {
             //await new Promise(r => setTimeout(r, 2000));
-            const token = await getToken();
-            console.log("token index: " + await getToken());
+            const token = await getToken("auth-token");
             setLoggedIn(!!token);
         }
         checkLogin();
     }, []);
-   // console.log("token index: ", loggedIn);
+    console.log("token index: ", loggedIn);
 
     if (loggedIn === null) {
         // Pendant qu'on lit le token : petit écran de chargement
@@ -26,5 +25,5 @@ export default function Index() {
             </View>
         );
     }
-    return loggedIn ? <Redirect href="/(tabs)" /> : <Redirect href="/(auth)/login" />;
+    return loggedIn ? <Redirect href="/(tabs)/home" /> : <Redirect href="/(auth)/login" />;
 }

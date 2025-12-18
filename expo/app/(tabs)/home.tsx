@@ -6,16 +6,16 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link, useRouter  } from 'expo-router';
-import { removeToken, getToken} from '@/lib/auth';
+import { removeToken, getToken} from '@/lib/token';
 
 
 export default function HomeScreen() {
 
   const router = useRouter();
   const logout = async () => {
-    removeToken()  // on supprime le token
-    console.log("token removed: " + await getToken());
-    router.replace("/(auth)/login");             // on renvoie vers l'écran de login
+    removeToken("auth-token")  // on supprime le token
+    console.log(await getToken("auth-token"));
+    router.replace("/");             // on renvoie vers l'écran de login
   };
 
   return (
