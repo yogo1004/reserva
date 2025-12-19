@@ -6,18 +6,8 @@ import { getToken, removeToken } from "@/lib/auth";
 
 export default function Index() {
     const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
-
+    // removeToken("auth")
     useEffect(() => {
-
-
-
-    //    removeToken('auth');
-    //    removeToken('token_auth');
-    //    removeToken('auth_token');
-    //    removeToken('auth-token');
-    //    removeToken('token-auth');
-
-
 
         async function checkLogin() {
             //await new Promise(r => setTimeout(r, 2000));

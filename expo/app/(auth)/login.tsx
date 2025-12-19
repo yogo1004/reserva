@@ -21,7 +21,7 @@ export default function LoginScreen() {
         setLoading(true);
 
         try {
-            // ✅ 1) Appel backend (à brancher sur ton endpoint /auth/login)
+            // Appel backend (à brancher sur ton endpoint /auth/login)
             const res = await fetch(`${API_BASE_URL}/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -33,14 +33,14 @@ export default function LoginScreen() {
                 throw new Error("Identifiants invalides");
             }
 
-            // ✅ 2) On attend un JSON du type: { token: "..." }
+            // On attend un JSON du type: { token: "..." }
             const data: { token: string } = await res.json();
             console.log("data",data.token);
 
-            // ✅ 3) Stockage sécurisé
+            // Stockage sécurisé
             await saveToken("auth",data.token);
 
-            // ✅ 4) Retour au guard (app/index.tsx)
+            // Retour au guard (app/index.tsx)
             router.replace("/");
         } catch (e: any) {
             setError(e?.message ?? "Erreur de connexion");

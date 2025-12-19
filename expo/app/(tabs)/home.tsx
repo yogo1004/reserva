@@ -7,7 +7,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link, useRouter  } from 'expo-router';
 import { removeToken, getToken} from '@/lib/auth';
-import { apiFetch } from "@/lib/api";
+import { apiFetch } from "@/lib/api_2";
 import { useEffect, useState } from "react";
 
 
@@ -18,7 +18,6 @@ export default function HomeScreen() {
   const router = useRouter();
   const logout = async () => {
     removeToken("auth")  // on supprime le token
-    console.log(await getToken("auth"));
     router.replace("/");             // on renvoie vers l'écran de login
   };
 
