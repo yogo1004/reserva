@@ -83,12 +83,8 @@ export default function RoomsScreen() {
                             padding: 14,
                         }}
                     >
-                        <Text style={{ fontSize: 18, fontWeight: "600" }}>{item.name}</Text>
-                        <Text style={{ color: "#666", marginTop: 4 }}>
-                            {item.location ?? "Lieu: non renseigné"}
-                        </Text>
-                        <Text style={{ marginTop: 6 }}>Capacité : {item.capacity}</Text>
-                        <Text style={{ marginTop: 6 }}>{item.is_active ? "libre" : "occupe"}</Text>
+                        <Text style={{ fontSize: 18, fontWeight: "600" }}>{item.name} ({item.capacity}) - {item.is_active ? "libre" : "occupe"}</Text>
+
 
                     </View>
                 )}
