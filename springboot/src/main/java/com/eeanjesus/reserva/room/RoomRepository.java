@@ -8,7 +8,5 @@ import java.util.List;
 public interface RoomRepository extends JpaRepository<RoomEntity, Long> {
 
     List<RoomEntity> findByIsActiveTrue();
-
-
     List<RoomEntity> findAll();
 }

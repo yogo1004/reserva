@@ -9,6 +9,8 @@ public interface ReservationRepository extends JpaRepository<ReservationEntity, 
 
     List<ReservationEntity> findByRoom_IdOrderByStartTimeAsc(Long roomId);
 
+    List<ReservationEntity> findByUser_IdOrderByStartTimeAsc(Long userId);
+
     List<ReservationEntity> findByRoom_IdAndStartTimeLessThanAndEndTimeGreaterThan(
             Long roomId, LocalDateTime to, LocalDateTime from
     );

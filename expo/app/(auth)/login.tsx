@@ -35,7 +35,7 @@ export default function LoginScreen() {
 
             // On attend un JSON du type: { token: "..." }
             const data: { token: string } = await res.json();
-            console.log("data",data.token);
+            console.log("token user",data.token);
 
             // Stockage sécurisé
             await saveToken("auth",data.token);

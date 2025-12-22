@@ -16,10 +16,10 @@ public class RoomController {
     }
 
     // GET /api/rooms
- //   @GetMapping("/true")
- //   public List<RoomResponse> getRoomsIsActiveTrue() {
- //       return roomService.getAllActiveRooms();
- //   }
+    @GetMapping("/true")
+    public List<RoomResponse> getRoomsIsActiveTrue() {
+        return roomService.getAllActiveRooms();
+    }
 
     @GetMapping
     public List<RoomResponse> getRooms() {

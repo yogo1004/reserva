@@ -6,7 +6,9 @@ import { getToken, removeToken } from "@/lib/auth";
 
 export default function Index() {
     const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
-    // removeToken("auth")
+
+
+     // removeToken("auth")
     useEffect(() => {
 
         async function checkLogin() {

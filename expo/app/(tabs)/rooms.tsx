@@ -27,7 +27,6 @@ export default function RoomsScreen() {
 
 
     useEffect(() => {
-        console.log("rooms state updated:", rooms.map(r => ({ id: r.id, is_active: r.is_active })));
         (async () => {
             try {
                 await loadRooms();
@@ -49,7 +48,6 @@ export default function RoomsScreen() {
             setRefreshing(false);
         }
 
-        console.log(rooms);
     };
 
     if (loading) {
